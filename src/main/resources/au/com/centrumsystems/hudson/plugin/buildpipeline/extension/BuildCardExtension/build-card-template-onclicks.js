@@ -36,4 +36,20 @@ Behaviour.specify(".bct-rerun-success-icon-onclick", 'BuildCardExtension_success
     });
 });
 
+Behaviour.specify(".bct-rerun-latest-build-onclick", 'BuildCardExtension_latestRerunClick', 0, function(element) {
+
+    const dataContainer = document.querySelector(".bct-rerun-latest-build-onclick-params");
+    const id = parseInt(dataContainer.dataset.showSpinnerId, 10);
+    const buildExtId = dataContainer.dataset.rerunBuildExtId;
+    const dependencyIds = dataContainer.dataset.rerunBuildDependencyIds
+        .split(',')
+        .filter(Boolean)
+        .map(id => parseInt(id, 10));
+
+    element.addEventListener('click', () => {
+        buildPipeline.showSpinner(id);
+        buildPipeline.rerunBuild(id, buildExtId, dependencyIds);
+    });
+});
+
 

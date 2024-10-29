@@ -118,19 +118,26 @@
                     {{#if ${it.triggerOnlyLatestJob}}}
                         {{#if build.isLatestBuild}}
                             {{#if build.isUpstreamBuildLatest}}
-                            <span onclick="buildPipeline.showSpinner({{id}}); buildPipeline.rerunBuild({{id}}, '{{build.extId}}', [{{build.dependencyIds}}])">
+                            <span class="bct-rerun-latest-build-onclick-params" data-show-spinner-id="{{id}}" data-rerun-build-ext-id="{{build.extId}}" data-rerun-build-dependency-ids="{{build.dependencyIds}}" style="display: none;" />
+                            <span class="bct-rerun-latest-build-onclick">
                                 <l:icon src="icon-clock icon-sm" alt="retry" />
                             </span>
+<!--                            <span onclick="buildPipeline.showSpinner({{id}}); buildPipeline.rerunBuild({{id}}, '{{build.extId}}', [{{build.dependencyIds}}])">-->
+<!--                                <l:icon src="icon-clock icon-sm" alt="retry" />-->
+<!--                            </span>-->
+<!--            <h1>Shlomo</h1>-->
                             {{/if}}
                         {{/if}}
                     {{else}}
                         {{#if build.isManual}}
                             <span onclick="buildPipeline.showSpinner({{id}}); buildPipeline.triggerBuild({{id}}, '{{upstream.projectName}}', {{upstream.buildNumber}}, '{{project.name}}', [{{build.dependencyIds}}])">
                                 <l:icon src="icon-clock icon-sm" alt="retry" />
+                                <h1>Shlomo2</h1>
                             </span>
                         {{else}}
                             <span onclick="buildPipeline.showSpinner({{id}}); buildPipeline.rerunBuild({{id}}, '{{build.extId}}', [{{build.dependencyIds}}])">
                                 <l:icon src="icon-clock icon-sm" alt="retry" />
+                                <h1>Shlomo3</h1>
                             </span>
                         {{/if}}
                     {{/if}}
