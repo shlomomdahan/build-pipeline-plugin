@@ -122,10 +122,6 @@
                             <span class="bct-rerun-latest-build-onclick">
                                 <l:icon src="icon-clock icon-sm" alt="retry" />
                             </span>
-<!--                            <span onclick="buildPipeline.showSpinner({{id}}); buildPipeline.rerunBuild({{id}}, '{{build.extId}}', [{{build.dependencyIds}}])">-->
-<!--                                <l:icon src="icon-clock icon-sm" alt="retry" />-->
-<!--                            </span>-->
-<!--            <h1>Shlomo</h1>-->
                             {{/if}}
                         {{/if}}
                     {{else}}
