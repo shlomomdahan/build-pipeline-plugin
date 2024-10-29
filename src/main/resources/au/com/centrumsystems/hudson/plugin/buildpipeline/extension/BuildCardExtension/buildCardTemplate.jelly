@@ -61,8 +61,8 @@
         {{#unless project.disabled}}
         <div class="status-bar" id="status-bar-{{id}}">
             {{#if build.isBuilding}}
-                <span class="fill-dialog-params-statusbar" data-fill-dialog-href="${app.rootUrl}{{build.url}}console" data-fill-dialog-title="Console output for {{project.name}} #{{build.number}}" style="display:none"/>
-                <div class="progress-console-onclick">
+                <span class="bct-progress-console-onclick-params" data-fill-dialog-href="${app.rootUrl}{{build.url}}console" data-fill-dialog-title="Console output for {{project.name}} #{{build.number}}" style="display:none"/>
+                <div class="bct-progress-console-onclick">
                     <table class="progress-bar" align="center">
                         <tbody>
                             <tr title="Estimated remaining time: {{build.estimatedRemainingTime}}">
@@ -95,8 +95,8 @@
                             </a>
                         </j:when>
                         <j:otherwise>
-                            <span class="fill-dialog-params-console-output-icon" data-fill-dialog-href="${app.rootUrl}{{build.url}}console" data-fill-dialog-title="Console output for {{project.name}} #{{build.number}}" style="display:none"/>
-                            <span class="console-icon-onlick" >
+                            <span class="bct-console-icon-onclick-params" data-fill-dialog-href="${app.rootUrl}{{build.url}}console" data-fill-dialog-title="Console output for {{project.name}} #{{build.number}}" style="display:none"/>
+                            <span class="bct-console-icon-onclick" >
                                 <l:icon src="${consoleOutputIconUrl} icon-sm" alt="console" />
                             </span>
                         </j:otherwise>
@@ -108,7 +108,8 @@
                 {{#if build.isSuccess}}
                     {{#if ${!it.triggerOnlyLatestJob}}}
                     <j:if test="${it.hasBuildPermission()}">
-                    <span onclick="buildPipeline.showSpinner({{id}}); buildPipeline.rerunBuild({{id}}, '{{build.extId}}', [{{build.dependencyIds}}])">
+                    <span class="bct-rerun-success-icon-onclick-params" data-show-spinner-id="{{id}}" data-rerun-build-ext-id="{{build.extId}}" data-rerun-build-dependency-ids="{{build.dependencyIds}}" style="display: none;" />
+                    <span class="bct-rerun-success-icon-onclick">
                         <l:icon src="icon-clock icon-sm" alt="re-run" />
                     </span>
                     </j:if>
