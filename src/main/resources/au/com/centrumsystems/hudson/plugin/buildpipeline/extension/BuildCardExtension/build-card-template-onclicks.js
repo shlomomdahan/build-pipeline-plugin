@@ -1,4 +1,3 @@
-// Store references to handlers to avoid duplicates
 let pipelineClickHandler = null;
 let consoleClickHandler = null;
 let progressClickHandler = null;
