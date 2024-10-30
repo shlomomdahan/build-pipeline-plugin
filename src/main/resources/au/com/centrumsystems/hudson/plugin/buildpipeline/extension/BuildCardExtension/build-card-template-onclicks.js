@@ -1,9 +1,9 @@
-let pipelineClickHandler = null;
-let consoleClickHandler = null;
-let progressClickHandler = null;
+let progressBarClickHandler = null;
+let consoleIconClickHandler = null;
 let successRerunHandler = null;
-let latestRerunHandler = null;
-let triggerBuildHandler = null;
+let latestFailedRerunHandler = null;
+let manualFailedRerunHandler = null;
+let failedRerunHandler = null;
 let triggerManualBuildLatestHandler = null;
 let triggerManualBuildHandler = null;
 
@@ -29,6 +29,7 @@ const parseTriggerAttributes = (container) => ({
 
 const handleDialogClick = (dataContainer) => {
     const { fillDialogHref: href, fillDialogTitle: title } = dataContainer.dataset;
+    console.log('handleDialogClick', href, title);
     buildPipeline.fillDialog(href, title);
 };
 
@@ -45,7 +46,6 @@ const handleTriggerBuild = (dataContainer) => {
 };
 
 const createDelegatedHandler = (parentSelector, targetSelector, handlerFn, existingHandler) => {
-
     const parentElement = document.querySelector(parentSelector);
 
     if (existingHandler) {
@@ -56,7 +56,9 @@ const createDelegatedHandler = (parentSelector, targetSelector, handlerFn, exist
         const clickTarget = event.target.closest(targetSelector);
         if (!clickTarget) return;
 
-        const dataContainer = document.querySelector(targetSelector + '-params');
+        const buildCard = clickTarget.closest('.build-card');
+        const dataContainer = buildCard.querySelector(targetSelector + '-params');
+
         handlerFn(dataContainer);
     };
 
@@ -65,15 +67,15 @@ const createDelegatedHandler = (parentSelector, targetSelector, handlerFn, exist
 };
 
 Behaviour.specify(
-    ".bct-progress-console-onclick",
+    ".bct-progress-bar-onclick",
     'BuildCardExtension_progressBarClick',
     0,
     function() {
-        progressClickHandler = createDelegatedHandler(
+        progressBarClickHandler = createDelegatedHandler(
             '.pipelines',
-            '.bct-progress-console-onclick',
+            '.bct-progress-bar-onclick',
             handleDialogClick,
-            progressClickHandler
+            progressBarClickHandler
         );
     }
 );
@@ -83,23 +85,23 @@ Behaviour.specify(
     'BuildCardExtension_consoleIconClick',
     0,
     function() {
-        consoleClickHandler = createDelegatedHandler(
+        consoleIconClickHandler = createDelegatedHandler(
             '.pipelines',
             '.bct-console-icon-onclick',
             handleDialogClick,
-            consoleClickHandler
+            consoleIconClickHandler
         );
     }
 );
 
 Behaviour.specify(
-    ".bct-rerun-success-icon-onclick",
+    ".bct-rerun-successful-build-onclick",
     'BuildCardExtension_successRerunClick',
     0,
     function() {
         successRerunHandler = createDelegatedHandler(
             '.pipelines',
-            '.bct-rerun-success-icon-onclick',
+            '.bct-rerun-successful-build-onclick',
             handleRerunClick,
             successRerunHandler
         );
@@ -108,28 +110,42 @@ Behaviour.specify(
 
 Behaviour.specify(
     ".bct-rerun-failed-latest-build-onclick",
-    'BuildCardExtension_latestRerunClick',
+    'BuildCardExtension_latestFailedRerunClick',
     0,
     function() {
-        latestRerunHandler = createDelegatedHandler(
+        latestFailedRerunHandler = createDelegatedHandler(
             '.pipelines',
             '.bct-rerun-failed-latest-build-onclick',
             handleRerunClick,
-            latestRerunHandler
+            latestFailedRerunHandler
         );
     }
 );
 
 Behaviour.specify(
-    ".bct-rerun-failed-not-manual-build-onclick",
+    ".bct-rerun-failed-manual-build-onclick",
+    'BuildCardExtension_failedManualRerunClick',
+    0,
+    function() {
+        manualFailedRerunHandler = createDelegatedHandler(
+            '.pipelines',
+            '.bct-rerun-failed-manual-build-onclick',
+            handleTriggerBuild,
+            manualFailedRerunHandler
+        );
+    }
+);
+
+Behaviour.specify(
+    ".bct-rerun-failed-build-onclick",
     'BuildCardExtension_failedNotManualRerunClick',
     0,
     function() {
-        pipelineClickHandler = createDelegatedHandler(
+        failedRerunHandler = createDelegatedHandler(
             '.pipelines',
-            '.bct-rerun-failed-not-manual-build-onclick',
+            '.bct-rerun-failed-build-onclick',
             handleRerunClick,
-            pipelineClickHandler
+            failedRerunHandler
         );
     }
 );
@@ -143,7 +159,7 @@ Behaviour.specify(
             '.pipelines',
             '.bct-trigger-manual-build-latest-onclick',
             handleTriggerBuild,
-            triggerBuildHandler
+            triggerManualBuildLatestHandler
         );
     }
 );
