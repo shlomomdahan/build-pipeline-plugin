@@ -1,12 +1,9 @@
 Behaviour.specify(".bpp-trigger-pipeline-parameterized", 'BuildPipelineView.TriggerPipelineParameterized', 0, function(element) {
     element.addEventListener('click', function() {
-
         const paramsElement = element.previousElementSibling;
         const href = paramsElement.dataset.fillDialogHref;
         const title = paramsElement.dataset.fillDialogTitle;
-
         buildPipeline.fillDialog(href, title);
-
     });
 });
 
