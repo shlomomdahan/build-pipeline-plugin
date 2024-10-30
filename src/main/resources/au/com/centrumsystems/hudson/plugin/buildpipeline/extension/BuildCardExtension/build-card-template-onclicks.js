@@ -5,9 +5,8 @@ const parseDataAttributes = function(container) {
         dependencyIds: container.dataset.rerunBuildDependencyIds
             .split(",")
             .filter(Boolean)
-            .map(function(id) {
-                return parseInt(id, 10);
-            })
+            .map(id => parseInt(id, 10))
+
     };
 };
 
@@ -20,9 +19,7 @@ const parseTriggerAttributes = function(container) {
         dependencyIds: container.dataset.dependencyIds
             .split(",")
             .filter(Boolean)
-            .map(function(id) {
-                return parseInt(id, 10);
-            })
+            .map(id => parseInt(id, 10))
     };
 };
 
