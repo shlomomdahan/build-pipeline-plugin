@@ -118,8 +118,8 @@
                     {{#if ${it.triggerOnlyLatestJob}}}
                         {{#if build.isLatestBuild}}
                             {{#if build.isUpstreamBuildLatest}}
-                            <span class="bct-rerun-latest-build-onclick-params" data-show-spinner-id="{{id}}" data-rerun-build-ext-id="{{build.extId}}" data-rerun-build-dependency-ids="{{build.dependencyIds}}" style="display: none;" />
-                            <span class="bct-rerun-latest-build-onclick">
+                            <span class="bct-rerun-failed-latest-build-onclick-params" data-show-spinner-id="{{id}}" data-rerun-build-ext-id="{{build.extId}}" data-rerun-build-dependency-ids="{{build.dependencyIds}}" style="display: none;" />
+                            <span class="bct-rerun-failed-latest-build-onclick">
                                 <l:icon src="icon-clock icon-sm" alt="retry" />
                             </span>
                             {{/if}}
@@ -131,10 +131,11 @@
                                 <h1>Shlomo2</h1>
                             </span>
                         {{else}}
-                            <span onclick="buildPipeline.showSpinner({{id}}); buildPipeline.rerunBuild({{id}}, '{{build.extId}}', [{{build.dependencyIds}}])">
+                            <span class="bct-rerun-failed-not-manual-build-onclick-params" data-show-spinner-id="{{id}}" data-rerun-build-ext-id="{{build.extId}}" data-rerun-build-dependency-ids="{{build.dependencyIds}}" style="display: none;" />
+                            <span class="bct-rerun-failed-not-manual-build-onclick">
                                 <l:icon src="icon-clock icon-sm" alt="retry" />
-                                <h1>Shlomo3</h1>
                             </span>
+            <h1>Shlomo3</h1>
                         {{/if}}
                     {{/if}}
                 {{/if}}
@@ -146,11 +147,13 @@
                     <span onclick="buildPipeline.showSpinner({{id}}); buildPipeline.triggerBuild({{id}}, '{{upstream.projectName}}', {{upstream.buildNumber}}, '{{project.name}}', [{{build.dependencyIds}}])">
                         <l:icon src="icon-clock icon-sm" alt="trigger" />
                     </span>
+            <h1>SHLOMO4</h1>
                     {{/if}}
                 {{else}}
                 <span onclick="buildPipeline.showSpinner({{id}}); buildPipeline.triggerBuild({{id}}, '{{upstream.projectName}}', {{upstream.buildNumber}}, '{{project.name}}', [{{build.dependencyIds}}])">
                     <l:icon src="icon-clock icon-sm" alt="trigger" />
                 </span>
+            <h1>SHLOMO5</h1>
                 {{/if}}
             {{/if}}
         </div>
