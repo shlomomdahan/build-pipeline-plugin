@@ -146,14 +146,16 @@
             {{#if build.isReadyToBeManuallyBuilt}}
                 {{#if ${it.triggerOnlyLatestJob}}}
                     {{#if build.isUpstreamBuildLatestSuccess}}
-                    <span class="bct-trigger-build-onclick-params" data-show-spinner-id="{{id}}" data-upstream-project-name="{{upstream.projectName}}" data-upstream-build-number="{{upstream.buildNumber}}" data-project-name="{{project.name}}" data-dependency-ids="{{build.dependencyIds}}" style="display: none;" />
-                    <span class="bct-trigger-build-onclick">
+                    <span class="bct-trigger-manual-build-latest-onclick-params" data-show-spinner-id="{{id}}" data-upstream-project-name="{{upstream.projectName}}" data-upstream-build-number="{{upstream.buildNumber}}" data-project-name="{{project.name}}" data-dependency-ids="{{build.dependencyIds}}" style="display: none;" />
+                    <span class="bct-trigger-manual-build-latest-onclick">
                         <l:icon src="icon-clock icon-sm" alt="trigger" />
                     </span>
                     <h1>test5</h1>
                     {{/if}}
                 {{else}}
-                <span onclick="buildPipeline.showSpinner({{id}}); buildPipeline.triggerBuild({{id}}, '{{upstream.projectName}}', {{upstream.buildNumber}}, '{{project.name}}', [{{build.dependencyIds}}])">
+
+                <span class="bct-trigger-manual-build-onclick-params" data-show-spinner-id="{{id}}" data-upstream-project-name="{{upstream.projectName}}" data-upstream-build-number="{{upstream.buildNumber}}" data-project-name="{{project.name}}" data-dependency-ids="{{build.dependencyIds}}" style="display: none;" />
+                <span class="bct-trigger-manual-build-onclick">
                     <l:icon src="icon-clock icon-sm" alt="trigger" />
                 </span>
                 <h1>test6</h1>

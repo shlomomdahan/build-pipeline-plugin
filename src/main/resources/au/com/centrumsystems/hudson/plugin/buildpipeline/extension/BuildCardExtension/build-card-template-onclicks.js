@@ -5,6 +5,8 @@ let progressClickHandler = null;
 let successRerunHandler = null;
 let latestRerunHandler = null;
 let triggerBuildHandler = null;
+let triggerManualBuildLatestHandler = null;
+let triggerManualBuildHandler = null;
 
 // Common utilities
 const parseDataAttributes = (container) => ({
@@ -152,15 +154,29 @@ Behaviour.specify(
 );
 
 Behaviour.specify(
-    ".bct-trigger-build-onclick",
+    ".bct-trigger-manual-build-latest-onclick",
     'BuildCardExtension_triggerBuildClick',
     0,
     function() {
         triggerBuildHandler = createDelegatedHandler(
             '.pipelines',
-            '.bct-trigger-build-onclick',
+            '.bct-trigger-manual-build-latest-onclick',
             handleTriggerBuild,
             triggerBuildHandler
+        );
+    }
+);
+
+Behaviour.specify(
+    ".bct-trigger-manual-build-onclick",
+    'BuildCardExtension_triggerManualBuildClick',
+    0,
+    function() {
+        triggerManualBuildHandler = createDelegatedHandler(
+            '.pipelines',
+            '.bct-trigger-manual-build-onclick',
+            handleTriggerBuild,
+            triggerManualBuildHandler
         );
     }
 );
