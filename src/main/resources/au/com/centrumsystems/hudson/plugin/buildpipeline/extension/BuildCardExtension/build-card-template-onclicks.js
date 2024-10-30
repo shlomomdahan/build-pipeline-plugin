@@ -1,4 +1,4 @@
-const parseDataAttributes = function(container) {
+function parseDataAttributes(container) {
     return {
         id: parseInt(container.dataset.showSpinnerId, 10),
         buildExtId: container.dataset.rerunBuildExtId,
@@ -6,11 +6,10 @@ const parseDataAttributes = function(container) {
             .split(",")
             .filter(Boolean)
             .map(id => parseInt(id, 10))
-
     };
-};
+}
 
-const parseTriggerAttributes = function(container) {
+function parseTriggerAttributes(container) {
     return {
         id: parseInt(container.dataset.showSpinnerId, 10),
         upstreamProjectName: container.dataset.upstreamProjectName,
@@ -21,27 +20,27 @@ const parseTriggerAttributes = function(container) {
             .filter(Boolean)
             .map(id => parseInt(id, 10))
     };
-};
+}
 
-const handleDialogClick = function(dataContainer) {
+function handleDialogClick(dataContainer) {
     const href = dataContainer.dataset.fillDialogHref;
     const title = dataContainer.dataset.fillDialogTitle;
     buildPipeline.fillDialog(href, title);
-};
+}
 
-const handleRerunClick = function(dataContainer) {
+function handleRerunClick(dataContainer) {
     const { id, buildExtId, dependencyIds } = parseDataAttributes(dataContainer);
     buildPipeline.showSpinner(id);
     buildPipeline.rerunBuild(id, buildExtId, dependencyIds);
-};
+}
 
-const handleTriggerBuild = function(dataContainer) {
+function handleTriggerBuild(dataContainer) {
     const { id, upstreamProjectName, upstreamBuildNumber, projectName, dependencyIds } = parseTriggerAttributes(dataContainer);
     buildPipeline.showSpinner(id);
     buildPipeline.triggerBuild(id, upstreamProjectName, upstreamBuildNumber, projectName, dependencyIds);
-};
+}
 
-const createClickHandler = function(parentElement, targetSelector, handlerFn) {
+function createClickHandler(parentElement, targetSelector, handlerFn) {
     const newHandler = function(event) {
         const clickTarget = event.target.closest(targetSelector);
         if (!clickTarget || !parentElement.contains(clickTarget)) return;
@@ -54,7 +53,7 @@ const createClickHandler = function(parentElement, targetSelector, handlerFn) {
     };
 
     parentElement.addEventListener("click", newHandler);
-};
+}
 
 const onclickElements = {
     ".bct-progress-bar-onclick": {
