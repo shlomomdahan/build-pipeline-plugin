@@ -3,7 +3,6 @@
     <st:include page="bpp.jelly" from="${it.getBuildPipelineView()}" />
     <link href="${rootURL}/plugin/build-pipeline-plugin/css/main_dashboard.css" type="text/css" rel="stylesheet" />
     <script type="text/javascript">
-        console.log("main_dashboard.jelly");
         // show/hide build details
         jQuery(function() {
             jQuery(".header").click(function() {
