@@ -8,7 +8,7 @@
 
     <div class="pipeline-info">
         <div class="revision rounded">
-            <div class="title">Pipeline ${buildGrid.get(0,0).getRevision()}</div>
+            <div class="title build-parameters-trigger-id" data-build-id="${buildGrid.get(0,0).getId()}" id="build-parameters-trigger-${buildGrid.get(0,0).getId()}">Pipeline ${buildGrid.get(0,0).getRevision()}</div>
             <j:choose>
                 <j:when test="${buildGrid.get(0,0).getParameters().isEmpty()}">
                     <div class="description">No parameters</div>
@@ -18,16 +18,13 @@
                         <ul>
                             <j:forEach items="${it.getRowHeaders().getParameters(buildGrid.get(0,0).getCurrentBuild()).entrySet()}" var="buildParam" indexVar="buildParamCtr">
                                 <li>${buildParam.getKey()}: ${buildParam.getValue()}</li>
+                                <h1>TEST1</h1>
+                                <h1>TEST2</h1>
+                                <h1>TEST3</h1>
                             </j:forEach>
                         </ul>
                     </div>
-                    <script>
-                        jQuery('#build-parameters-trigger-${buildGrid.get(0,0).getId()}').tooltip({
-                            bodyHandler: function() {
-                                return jQuery('#build-parameters-${buildGrid.get(0,0).getId()}').html();
-                            }
-                        });
-                    </script>
+                    <st:adjunct includes="au.com.centrumsystems.hudson.plugin.buildpipeline.extension.AbstractNameValueHeader.build-parameters-tooltip"/>
                 </j:otherwise>
             </j:choose>
         </div>
