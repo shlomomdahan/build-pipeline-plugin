@@ -84,6 +84,7 @@ const onclickElements = {
 
 document.addEventListener("DOMContentLoaded", function () {
     const parentElement = document.querySelector(".pipelines");
+    if (!parentElement) return;
 
     Object.entries(onclickElements).forEach(function(entry) {
         const selector = entry[0];
