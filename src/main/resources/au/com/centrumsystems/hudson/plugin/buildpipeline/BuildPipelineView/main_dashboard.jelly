@@ -3,10 +3,11 @@
     <st:include page="bpp.jelly" from="${it.getBuildPipelineView()}" />
     <link href="${rootURL}/plugin/build-pipeline-plugin/css/main_dashboard.css" type="text/css" rel="stylesheet" />
     <script type="text/javascript">
+        console.log("main_dashboard.jelly");
         // show/hide build details
-        $(function() {
-            $(".header").click(function() {
-                var parent = $(this).parent();
+        jQuery(function() {
+            jQuery(".header").click(function() {
+                var parent = jQuery(this).parent();
                 var ba = parent.find(".build-actions");
                 var bb = parent.find(".build-body");
 
