@@ -34,11 +34,6 @@
     <st:bind var="buildPipelineViewProxy" value="${from}" />
     <span class="pipeline-refresh-frequency" data-refresh-frequency="${from.getRefreshFrequencyInMillis()}" style="display: none"/>
     <st:adjunct includes="au.com.centrumsystems.hudson.plugin.buildpipeline.BuildPipelineView.build-pipeline-init"/>
-<!--    <script type="text/javascript">-->
-<!--        var buildCardTemplateSource = jQuery("#build-card-template").html();-->
-<!--        var projectCardTemplateSource = jQuery("#project-card-template").html();-->
-<!--        var buildPipeline = new BuildPipeline(buildPipelineViewProxy, Handlebars.compile(buildCardTemplateSource), Handlebars.compile(projectCardTemplateSource), ${from.getRefreshFrequencyInMillis()});-->
-<!--    </script>-->
 
     <st:include page="buildCardHelpers.jelly"
                 from="${from.getBuildCard()}"
