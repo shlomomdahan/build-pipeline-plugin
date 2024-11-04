@@ -28,7 +28,7 @@
     <properties>
         <revision>2.0.3</revision>
         <changelist>-SNAPSHOT</changelist>
-        <jenkins.version>2.414.3</jenkins.version>
+        <jenkins.version>2.426.3</jenkins.version>
         <gitHubRepo>jenkinsci/${project.artifactId}</gitHubRepo>
         <code.coverage.percentage>50</code.coverage.percentage>
         <selenium.version>4.25.0</selenium.version>
@@ -85,6 +85,7 @@
         <dependency>
             <groupId>io.jenkins.plugins</groupId>
             <artifactId>jquery3-api</artifactId>
+            <version>3.7.1-2</version>
         </dependency>
         <!-- Optional dependencies for using Spock -->
         <dependency>
