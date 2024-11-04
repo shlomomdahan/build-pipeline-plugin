@@ -11,7 +11,6 @@ var buildPipeline = new BuildPipeline(
 
 
 function initializeBuildCards() {
-    // Find all build data elements
     document.querySelectorAll('.build-data').forEach(buildElement => {
 
         const buildId = buildElement.dataset.buildId;
