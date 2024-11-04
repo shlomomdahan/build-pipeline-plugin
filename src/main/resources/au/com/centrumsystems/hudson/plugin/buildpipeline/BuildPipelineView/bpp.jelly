@@ -130,14 +130,13 @@
                                     <j:if test="${build != null}">
                                         <td id="build-${build.getId()}">
                                             <j:set var="buildDataJson" value="${build.asJSON()}" />
-                                            <div class="build-data"
+                                            <span class="build-data"
                                                  data-build-id="${build.getId()}"
                                                  data-build-info="${buildDataJson}"
                                                  data-build-status="${build.getStatus()}"
                                                  data-is-manual-trigger="${build.isManualTrigger()}"
                                                  data-next-build-number="${build.getNextBuildNumber()}"
-                                                 data-dependency-ids="${build.getDependencyIds()}">
-                                            </div>
+                                                 data-dependency-ids="${build.getDependencyIds()}"/>
                                             <st:bind var="buildProxy_${build.getId()}" value="${build}" />
                                         </td>
                                         <j:if test="${(y + 1 != buildPipelineForm.getGridWidth())}">

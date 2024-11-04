@@ -3,10 +3,10 @@ const projectCardTemplateSource = jQuery("#project-card-template").html();
 const refreshFrequency = parseInt(document.querySelector(".pipeline-refresh-frequency").dataset.refreshFrequency, 10);
 
 var buildPipeline = new BuildPipeline(
-buildPipelineViewProxy,
-Handlebars.compile(buildCardTemplateSource),
-Handlebars.compile(projectCardTemplateSource),
-refreshFrequency
+    buildPipelineViewProxy,
+    Handlebars.compile(buildCardTemplateSource),
+    Handlebars.compile(projectCardTemplateSource),
+    refreshFrequency
 );
 
 
@@ -19,12 +19,7 @@ function initializeBuildCards() {
         const buildStatus = buildElement.dataset.buildStatus;
         const isManualTrigger = buildElement.dataset.isManualTrigger === 'true';
         const nextBuildNumber = parseInt(buildElement.dataset.nextBuildNumber, 10);
-        console.log(nextBuildNumber);
-        const dependencyIds = buildElement.dataset.dependencyIds
-            .split(',')
-            .filter(Boolean)
-            .map(id => parseInt(id, 10));
-
+        const dependencyIds = JSON.parse(buildElement.dataset.dependencyIds);
 
         // Generate build card
         jQuery(buildElement).append(buildPipeline.buildCardTemplate(buildData));
@@ -33,7 +28,7 @@ function initializeBuildCards() {
         buildPipeline.buildProxies[buildId] = window[`buildProxy_${buildId}`];
 
         if (buildStatus === 'BUILDING') {
-            buildPipeline.showProgress(buildId, dependencyIds, nextBuildNumber);
+            buildPipeline.showProgress(buildId, dependencyIds);
         }
 
         if (buildStatus === 'PENDING') {
