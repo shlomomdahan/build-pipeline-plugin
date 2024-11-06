@@ -171,7 +171,6 @@ public class BuildForm {
     }
 
     public Integer getProjectId() {
-
         return Math.abs(projectId);
     }
 
