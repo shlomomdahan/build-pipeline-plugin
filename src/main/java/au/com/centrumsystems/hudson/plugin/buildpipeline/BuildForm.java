@@ -129,11 +129,11 @@ public class BuildForm {
      */
     @JavaScriptMethod
     public String asJSON() {
-        return BuildJSONBuilder.asJSON(context, pipelineBuild, getId(), getProjectId(), getDependencyIds(), getParameterList());
+        return BuildJSONBuilder.asJSON(context, pipelineBuild, id, projectId, getDependencyIds(), getParameterList());
     }
 
     public int getId() {
-        return Math.abs(id);
+        return id;
     }
 
     /**
@@ -171,7 +171,7 @@ public class BuildForm {
     }
 
     public Integer getProjectId() {
-        return Math.abs(projectId);
+        return projectId;
     }
 
     public AbstractBuild<?, ?> getCurrentBuild() {
