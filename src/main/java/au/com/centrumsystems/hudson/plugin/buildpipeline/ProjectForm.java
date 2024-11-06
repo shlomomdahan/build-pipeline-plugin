@@ -240,7 +240,7 @@ public class ProjectForm {
     }
 
     public int getId() {
-        return name.hashCode();
+        return Math.abs(name.hashCode());
     }
 
     /**
