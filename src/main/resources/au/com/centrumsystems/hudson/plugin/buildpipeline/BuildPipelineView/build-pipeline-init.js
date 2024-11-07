@@ -9,6 +9,19 @@ var buildPipeline = new BuildPipeline(
     refreshFrequency
 );
 
+// const buildCardTemplateSource = jQuery("#build-card-template").html();
+// const projectCardTemplateSource = jQuery("#project-card-template").html();
+// const projectCardTemplate = window.BuildPipelineTemplates['project-card'];
+// const buildCardTemplate = window.BuildPipelineTemplates['build-card'];
+// const refreshFrequency = parseInt(document.querySelector(".pipeline-refresh-frequency").dataset.refreshFrequency, 10);
+//
+// var buildPipeline = new BuildPipeline(
+//     buildPipelineViewProxy,
+//     buildCardTemplate,
+//     projectCardTemplate,
+//     refreshFrequency
+// );
+
 
 function initializeBuildCards() {
     document.querySelectorAll('.build-data').forEach(buildElement => {

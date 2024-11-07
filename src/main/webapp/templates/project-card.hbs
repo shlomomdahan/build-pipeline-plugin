@@ -1,0 +1,20 @@
+<div class="build-card rounded">
+    <div class="header">
+        <a href="/jenkins/{{url}}" title="{{name}}">{{name}}</a>
+    </div>
+    <div class="build-info">
+        {{#if lastSuccessfulBuildNumber}}
+            <ul>
+                <li>Health: <img src="/jenkins/images/16x16/{{health}}" alt="health-image"/></li>
+                <li>Build <abbr title="Number">No.</abbr>:
+                    <a href="/jenkins/{{url}}{{lastSuccessfulBuildNumber}}">#{{lastSuccessfulBuildNumber}}</a>
+                </li>
+                {{#each lastSuccessfulBuildParams}}
+                    <li>{{paramName}}: {{paramValue}}</li>
+                {{/each}}
+            </ul>
+        {{else}}
+            Awaiting Execution
+        {{/if}}
+    </div>
+</div>

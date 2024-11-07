@@ -34,6 +34,8 @@
         <selenium.version>4.25.0</selenium.version>
         <!-- TODO fix existing violations -->
         <spotbugs.threshold>High</spotbugs.threshold>
+        <node.version>20.11.0</node.version>
+        <npm.version>10.2.4</npm.version>
     </properties>
     <developers>
         <developer>

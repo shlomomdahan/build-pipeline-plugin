@@ -32,6 +32,7 @@
                 from="${from.getColumnHeaders()}"
                 it="${from}" />
 </span>
+<!--    <script src="${rootURL}/plugin/build-pipeline-plugin/js/templates-bundle.js"></script>-->
 
     <st:bind var="buildPipelineViewProxy" value="${from}" />
     <span class="pipeline-refresh-frequency" data-refresh-frequency="${from.getRefreshFrequencyInMillis()}" style="display: none"/>
