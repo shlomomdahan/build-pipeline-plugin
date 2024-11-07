@@ -83,7 +83,7 @@ const onclickElements = {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-    const parentElement = document.querySelector(".pipelines");
+    const parentElement = document.querySelector(".main-pipeline-selector");
     if (!parentElement) return;
 
     Object.entries(onclickElements).forEach(function(entry) {
