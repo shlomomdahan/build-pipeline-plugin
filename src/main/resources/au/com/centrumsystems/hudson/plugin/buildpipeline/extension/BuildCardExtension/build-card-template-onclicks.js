@@ -83,12 +83,15 @@ const onclickElements = {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-    const parentElement = document.querySelector(".main-pipeline-selector");
-    if (!parentElement) return;
+    const pipelineWrappers = document.querySelectorAll(".pipeline-wrapper");
 
-    Object.entries(onclickElements).forEach(function(entry) {
-        const selector = entry[0];
-        const handlerConfig = entry[1];
-        createClickHandler(parentElement, selector, handlerConfig.handler);
+    if (!pipelineWrappers.length) return;
+
+    pipelineWrappers.forEach(wrapper => {
+        Object.entries(onclickElements).forEach(function(entry) {
+            const selector = entry[0];
+            const handlerConfig = entry[1];
+            createClickHandler(wrapper, selector, handlerConfig.handler);
+        });
     });
 });
