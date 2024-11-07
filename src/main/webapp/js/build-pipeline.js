@@ -1,10 +1,11 @@
-var BuildPipeline = function(viewProxy, buildCardTemplate, projectCardTemplate, refreshFrequency){
+var BuildPipeline = function(viewProxy, buildCardTemplate, projectCardTemplate, viewSettings){
 	this.buildCardTemplate = buildCardTemplate;
 	this.projectCardTemplate = projectCardTemplate;
 	this.buildProxies = {};
     this.projectProxies = {};
 	this.viewProxy = viewProxy;
-	this.refreshFrequency = refreshFrequency;
+	this.refreshFrequency = viewSettings.refreshFrequency;
+	this.viewSettings = viewSettings;
 };
 
 BuildPipeline.prototype = {
@@ -55,8 +56,14 @@ BuildPipeline.prototype = {
 	},
 	updateBuildCardFromJSON : function(buildAsJSON, fadeIn) {
 		var buildPipeline = this;
+
+		const templateContext = {
+			...buildAsJSON,
+			viewSettings: this.viewSettings
+		};
+
 		jQuery("#build-" + buildAsJSON.id).empty();
-		jQuery("#build-" + buildAsJSON.id).hide().append(buildPipeline.buildCardTemplate(buildAsJSON)).fadeIn(fadeIn ? 1000 : 0);
+		jQuery("#build-" + buildAsJSON.id).hide().append(buildPipeline.buildCardTemplate(templateContext)).fadeIn(fadeIn ? 1000 : 0);
 	},
 	updateProjectCardFromJSON : function(projectAsJSON, fadeIn) {
 		var buildPipeline = this;

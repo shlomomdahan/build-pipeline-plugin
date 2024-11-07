@@ -1,6 +1,6 @@
 <div class="build-card rounded {{build.status}} {{#if project.disabled}}disabled{{/if}}">
     <div class="header">
-        <a href="/jenkins/{{build.url}}" title="{{project.name}}">
+        <a href="{{viewSettings.rootURL}}/{{build.url}}" title="{{project.name}}">
             {{#unless build.isPending}}
                 {{#unless build.isReadyToBeManuallyBuilt}}
                     {{#if build.displayName}}
@@ -44,7 +44,7 @@
         {{#unless project.disabled}}
             <div class="status-bar" id="status-bar-{{id}}">
                 {{#if build.isBuilding}}
-                    <span class="bct-progress-bar-onclick-params" data-fill-dialog-href="/jenkins/{{build.url}}console" data-fill-dialog-title="Console output for {{project.name}} #{{build.number}}" style="display:none"></span>
+                    <span class="bct-progress-bar-onclick-params" data-fill-dialog-href="{{viewSettings.rootURL}}/{{build.url}}console" data-fill-dialog-title="Console output for {{project.name}} #{{build.number}}" style="display:none"></span>
                     <div class="bct-progress-bar-onclick">
                         <table class="progress-bar" align="center">
                             <tbody>
@@ -60,27 +60,27 @@
 
             <div class="icons" id="icons-{{id}}">
                 {{#if project.parameters.length}}
-                    <img title="This job has parameters" alt="This job has parameters" src="/jenkins/plugin/build-pipeline-plugin/images/has-parameter.png"/>
+                    <img title="This job has parameters" alt="This job has parameters" src="{{viewSettings.rootURL}}/plugin/build-pipeline-plugin/images/has-parameter.png"/>
                 {{/if}}
                 {{#unless build.isPending}}
                     {{#unless build.isReadyToBeManuallyBuilt}}
-                        {{#if newWindowConsoleOutputLinkStyle}}
-                            <h1>TEST2</h1>
-                            <a href="/jenkins/{{build.url}}console" target="_blank">
+                        {{#if viewSettings.isNewWindowConsoleOutput}}
+                            <a href="{{viewSettings.rootURL}}/{{build.url}}console" target="_blank">
                                 <span class="icon-terminal icon-sm"></span>
+                                <img src="{{viewSettings.rootURL}}/plugin/build-pipeline-plugin/images/console.png" alt="console-icon"/>
                             </a>
                         {{else}}
-                            {{#if thisWindowConsoleOutputLinkStyle}}
-                                <a href="/jenkins/{{build.url}}console">
+                            {{#if viewSettings.isThisWindowConsoleOutput}}
+                                <a href="{{viewSettings.rootURL}}/{{build.url}}console">
                                     <span class="icon-terminal icon-sm"></span>
-                                    <img src="/jenkins/plugin/build-pipeline-plugin/images/console.png" alt="console-icon"/>
+                                    <img src="{{viewSettings.rootURL}}/plugin/build-pipeline-plugin/images/console.png" alt="console-icon"/>
                                 </a>
                             {{else}}
-                                <span class="bct-console-icon-onclick-params" data-fill-dialog-href="/jenkins/{{build.url}}console" data-fill-dialog-title="Console output for {{project.name}} #{{build.number}}" style="display:none"></span>
+                                <span class="bct-console-icon-onclick-params" data-fill-dialog-href="{{viewSettings.rootURL}}/{{build.url}}console" data-fill-dialog-title="Console output for {{project.name}} #{{build.number}}" style="display:none"></span>
                                 <span class="bct-console-icon-onclick">
-                                <span class="icon-terminal icon-sm"></span>
-                                    <img src="/jenkins/plugin/build-pipeline-plugin/images/console.png" alt="console-icon"/>
-                            </span>
+                                    <span class="icon-terminal icon-sm"></span>
+                                    <img src="{{viewSettings.rootURL}}/plugin/build-pipeline-plugin/images/console.png" alt="console-icon"/>
+                                </span>
                             {{/if}}
                         {{/if}}
                     {{/unless}}
@@ -88,59 +88,53 @@
 
                 {{#if build.isRerunnable}}
                     {{#if build.isSuccess}}
-                        {{#unless triggerOnlyLatestJob}}
-                            {{#if hasBuildPermission}}
+                        {{#unless viewSettings.isTriggerOnlyLatestJob}}
+                            {{#if viewSettings.hasBuildPermission}}
                                 <span class="bct-rerun-successful-build-onclick-params" data-show-spinner-id="{{id}}" data-rerun-build-ext-id="{{build.extId}}" data-rerun-build-dependency-ids="{{build.dependencyIds}}" style="display: none;"></span>
                                 <span class="bct-rerun-successful-build-onclick">
-<!--                            <span class="icon-clock icon-sm"></span>-->
-                                    <img src="/jenkins/plugin/build-pipeline-plugin/images/console.png" alt="console-icon"/>
+                                    <img src="{{viewSettings.rootURL}}/plugin/build-pipeline-plugin/images/run.png" alt="trigger"/>
                         </span>
                             {{/if}}
                         {{/unless}}
                     {{else}}
-                        {{#if triggerOnlyLatestJob}}
+                        {{#if viewSettings.isTriggerOnlyLatestJob}}
                             {{#if build.isLatestBuild}}
                                 {{#if build.isUpstreamBuildLatest}}
                                     <span class="bct-rerun-failed-latest-build-onclick-params" data-show-spinner-id="{{id}}" data-rerun-build-ext-id="{{build.extId}}" data-rerun-build-dependency-ids="{{build.dependencyIds}}" style="display: none;"></span>
                                     <span class="bct-rerun-failed-latest-build-onclick">
-                                <span class="icon-clock icon-sm"></span>
-                                <img src="/jenkins/plugin/build-pipeline-plugin/images/console.png" alt="console-icon"/>
-                            </span>
+                                        <img src="{{viewSettings.rootURL}}/plugin/build-pipeline-plugin/images/run.png" alt="trigger"/>
+                                    </span>
                                 {{/if}}
                             {{/if}}
                         {{else}}
                             {{#if build.isManualTrigger}}
                                 <span class="bct-rerun-failed-manual-build-onclick-params" data-show-spinner-id="{{id}}" data-upstream-project-name="{{upstream.projectName}}" data-upstream-build-number="{{upstream.buildNumber}}" data-project-name="{{project.name}}" data-dependency-ids="{{build.dependencyIds}}" style="display: none;"></span>
                                 <span class="bct-rerun-failed-manual-build-onclick">
-                                <span class="icon-clock icon-sm"></span>
-                                <img src="/jenkins/plugin/build-pipeline-plugin/images/console.png" alt="console-icon"/>
-                            </span>
+                                    <img src="{{viewSettings.rootURL}}/plugin/build-pipeline-plugin/images/run.png" alt="trigger"/>
+                                </span>
                             {{else}}
                                 <span class="bct-rerun-failed-build-onclick-params" data-show-spinner-id="{{id}}" data-rerun-build-ext-id="{{build.extId}}" data-rerun-build-dependency-ids="{{build.dependencyIds}}" style="display: none;"></span>
                                 <span class="bct-rerun-failed-build-onclick">
-                                <span class="icon-clock icon-sm"></span>
-                                <img src="/jenkins/plugin/build-pipeline-plugin/images/console.png" alt="console-icon"/>
-                            </span>
+                                    <img src="{{viewSettings.rootURL}}/plugin/build-pipeline-plugin/images/run.png" alt="trigger"/>
+                                </span>
                             {{/if}}
                         {{/if}}
                     {{/if}}
                 {{/if}}
 
                 {{#if build.isReadyToBeManuallyBuilt}}
-                    {{#if triggerOnlyLatestJob}}
+                    {{#if viewSettings.isTriggerOnlyLatestJob}}
                         {{#if build.isUpstreamBuildLatestSuccess}}
                             <span class="bct-trigger-manual-build-latest-onclick-params" data-show-spinner-id="{{id}}" data-upstream-project-name="{{upstream.projectName}}" data-upstream-build-number="{{upstream.buildNumber}}" data-project-name="{{project.name}}" data-dependency-ids="{{build.dependencyIds}}" style="display: none;"></span>
                             <span class="bct-trigger-manual-build-latest-onclick">
-                        <span class="icon-clock icon-sm"></span>
-                        <img src="/jenkins/plugin/build-pipeline-plugin/images/console.png" alt="console-icon"/>
-                    </span>
+                                <img src="{{viewSettings.rootURL}}/plugin/build-pipeline-plugin/images/run.png" alt="trigger"/>
+                            </span>
                         {{/if}}
                     {{else}}
                         <span class="bct-trigger-manual-build-onclick-params" data-show-spinner-id="{{id}}" data-upstream-project-name="{{upstream.projectName}}" data-upstream-build-number="{{upstream.buildNumber}}" data-project-name="{{project.name}}" data-dependency-ids="{{build.dependencyIds}}" style="display: none;"></span>
                         <span class="bct-trigger-manual-build-onclick">
-                    <span class="icon-clock icon-sm"></span>
-                    <img src="/jenkins/plugin/build-pipeline-plugin/images/console.png" alt="console-icon"/>
-                </span>
+                           <img src="{{viewSettings.rootURL}}/plugin/build-pipeline-plugin/images/run.png" alt="trigger"/>
+                        </span>
                     {{/if}}
                 {{/if}}
             </div>
@@ -148,7 +142,7 @@
         {{#if project.disabled}}
             <div class="icons" id="icons-{{id}}">
                 <span class="disabled">
-                    <span class="icon-warning icon-sm"></span>
+                    <img src="{{viewSettings.rootURL}}/plugin/build-pipeline-plugin/images/warning.png" alt="warning-icon"/>
                 </span>
             </div>
         {{/if}}

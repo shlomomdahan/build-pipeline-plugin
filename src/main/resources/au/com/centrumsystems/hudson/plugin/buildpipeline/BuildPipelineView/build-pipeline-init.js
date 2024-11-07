@@ -1,26 +1,21 @@
-const buildCardTemplateSource = jQuery("#build-card-template").html();
-const projectCardTemplateSource = jQuery("#project-card-template").html();
-const refreshFrequency = parseInt(document.querySelector(".pipeline-refresh-frequency").dataset.refreshFrequency, 10);
+const projectCardTemplate = window.BuildPipelineTemplates['project-card'];
+const buildCardTemplate = window.BuildPipelineTemplates['build-card'];
+
+const viewSettings = {
+    refreshFrequency: parseInt(document.querySelector(".pipeline-view-settings").dataset.refreshFrequency, 10),
+    isNewWindowConsoleOutput: document.querySelector(".pipeline-view-settings").dataset.newWindowConsole === 'true',
+    isThisWindowConsoleOutput: document.querySelector(".pipeline-view-settings").dataset.thisWindowConsole === 'true',
+    isTriggerOnlyLatestJob: document.querySelector(".pipeline-view-settings").dataset.triggerOnlyLatest === 'true',
+    hasBuildPermission: document.querySelector(".pipeline-view-settings").dataset.hasBuildPermission === 'true',
+    rootURL: document.querySelector(".pipeline-view-settings").dataset.rootUrl
+};
 
 var buildPipeline = new BuildPipeline(
     buildPipelineViewProxy,
-    Handlebars.compile(buildCardTemplateSource),
-    Handlebars.compile(projectCardTemplateSource),
-    refreshFrequency
+    buildCardTemplate,
+    projectCardTemplate,
+    viewSettings
 );
-
-// const buildCardTemplateSource = jQuery("#build-card-template").html();
-// const projectCardTemplateSource = jQuery("#project-card-template").html();
-// const projectCardTemplate = window.BuildPipelineTemplates['project-card'];
-// const buildCardTemplate = window.BuildPipelineTemplates['build-card'];
-// const refreshFrequency = parseInt(document.querySelector(".pipeline-refresh-frequency").dataset.refreshFrequency, 10);
-//
-// var buildPipeline = new BuildPipeline(
-//     buildPipelineViewProxy,
-//     buildCardTemplate,
-//     projectCardTemplate,
-//     refreshFrequency
-// );
 
 
 function initializeBuildCards() {
@@ -33,8 +28,13 @@ function initializeBuildCards() {
         const nextBuildNumber = parseInt(buildElement.dataset.nextBuildNumber, 10);
         const dependencyIds = JSON.parse(buildElement.dataset.dependencyIds);
 
-        // Generate build card
-        jQuery(buildElement).append(buildPipeline.buildCardTemplate(buildData));
+        const templateContext = {
+            ...buildData,
+            viewSettings: viewSettings
+        };
+
+        // Generate build card with extended context
+        jQuery(buildElement).append(buildPipeline.buildCardTemplate(templateContext));
 
         // add build proxy to proxies for future use-->
         buildPipeline.buildProxies[buildId] = window[`buildProxy_${buildId}`];
