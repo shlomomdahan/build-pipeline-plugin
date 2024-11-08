@@ -54,8 +54,8 @@
         <dependencies>
             <dependency>
                 <groupId>io.jenkins.tools.bom</groupId>
-                <artifactId>bom-2.414.x</artifactId>
-                <version>2982.vdce2153031a_0</version>
+                <artifactId>bom-2.452.x</artifactId>
+                <version>3010.vec758b_8e7da_3</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -87,7 +87,6 @@
         <dependency>
             <groupId>io.jenkins.plugins</groupId>
             <artifactId>jquery3-api</artifactId>
-            <version>3.7.1-2</version>
         </dependency>
         <!-- Optional dependencies for using Spock -->
         <dependency>
@@ -295,7 +294,7 @@
         </repository>
         <snapshotRepository>
              <id>maven.jenkins-ci.org</id>
-             <url>https://repo.jenkins-ci.org/snapshots</url>
+	     <url>https://repo.jenkins-ci.org/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 
