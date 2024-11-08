@@ -7,7 +7,7 @@ Behaviour.specify(".bpp-trigger-pipeline-parameterized", 'BuildPipelineView.Trig
     });
 });
 
-Behaviour.specify(".bpp-trigger-pipeline-button", 'BuildPipelineView.TriggerPipeline', 0, function(element) {
+Behaviour.specify("#trigger-pipeline-button", 'BuildPipelineView.TriggerPipeline', 0, function(element) {
     element.addEventListener('click', function(e) {
         document.getElementById('triggerPipelineForm').submit();
     });

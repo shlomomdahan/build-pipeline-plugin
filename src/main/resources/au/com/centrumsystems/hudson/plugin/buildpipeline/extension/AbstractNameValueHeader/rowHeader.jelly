@@ -8,7 +8,7 @@
 
     <div class="pipeline-info">
         <div class="revision rounded">
-            <div class="title build-parameters-trigger-id" data-build-id="${buildGrid.get(0,0).getId()}" id="build-parameters-trigger-${buildGrid.get(0,0).getId()}">Pipeline ${buildGrid.get(0,0).getRevision()}</div>
+            <div class="title" data-build-id="${buildGrid.get(0,0).getId()}" id="build-parameters-trigger-${buildGrid.get(0,0).getId()}">Pipeline ${buildGrid.get(0,0).getRevision()}</div>
             <j:choose>
                 <j:when test="${buildGrid.get(0,0).getParameters().isEmpty()}">
                     <div class="description">No parameters</div>
