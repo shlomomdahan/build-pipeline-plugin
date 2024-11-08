@@ -94,7 +94,7 @@ public class BuildForm {
         }
         id = hashCode();
         final AbstractProject<?, ?> project = pipelineBuild.getProject();
-        projectId = project.getFullName().hashCode() & 0x7FFFFFFF;
+        projectId = project.getFullName().hashCode();
         final ParametersDefinitionProperty params = project.getProperty(ParametersDefinitionProperty.class);
         final ArrayList<String> paramList = new ArrayList<String>();
         if (params != null && params.getParameterDefinitionNames() != null) {
