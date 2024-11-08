@@ -7,17 +7,5 @@
 
         By default we just include helpers to append script tags to your build card
     -->
-    <![CDATA[
-
-    <script type="text/javascript">
-        Handlebars.registerHelper('startScript', function() {
-            return new Handlebars.SafeString("<scr" + "ipt>");
-        });
-
-        Handlebars.registerHelper('endScript', function() {
-            return new Handlebars.SafeString("</scr" + "ipt>");
-        });
-    </script>
-
-    ]]>
+    <st:adjunct includes="au.com.centrumsystems.hudson.plugin.buildpipeline.extension.BuildCardExtension.build-card-script-helpers"/>
 </j:jelly>
