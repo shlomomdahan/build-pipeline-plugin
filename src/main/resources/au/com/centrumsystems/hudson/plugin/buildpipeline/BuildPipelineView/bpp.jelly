@@ -63,8 +63,7 @@
         <j:if test="${hasBuildPermission}">
             <div class="icon-container">
             <j:if test="${from.isProjectParameterized()}">
-                <span class="bpp-trigger-pipeline-parameterized-params" data-fill-dialog-href="${app.rootUrl}${from.gridBuilder.firstJobLink}/build?delay=0sec" data-fill-dialog-title="Starts the pipeline with parameters" style="display: none" />
-                <span class="bpp-trigger-pipeline-parameterized pointer">
+                <span class="bpp-trigger-pipeline-parameterized pointer" data-fill-dialog-href="${app.rootUrl}${from.gridBuilder.firstJobLink}/build?delay=0sec" data-fill-dialog-title="Starts the pipeline with parameters">
                     <l:icon src="icon-clock icon-md" alt="Trigger a Pipeline" />
                                 <span>Run</span>
                 </span>
