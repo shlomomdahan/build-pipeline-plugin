@@ -70,7 +70,7 @@
                 </span>
             </j:if>
             <j:if test="${!from.isProjectParameterized()}">
-              <a class="bpp-trigger-pipeline-button" id="trigger-pipeline-button" href='#'>
+              <a id="trigger-pipeline-button" href='#'>
                 <l:icon src="icon-clock icon-md" alt="Trigger a Pipeline" />
                                 <span>Run</span>
               </a>
