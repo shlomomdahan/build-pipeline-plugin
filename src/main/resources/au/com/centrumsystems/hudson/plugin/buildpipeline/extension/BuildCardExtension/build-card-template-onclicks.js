@@ -45,11 +45,7 @@ function createClickHandler(parentElement, targetSelector, handlerFn) {
         const clickTarget = event.target.closest(targetSelector);
         if (!clickTarget || !parentElement.contains(clickTarget)) return;
 
-        const buildCard = clickTarget.closest(".build-card");
-        if (!buildCard) return;
-
-        const dataContainer = buildCard.querySelector(targetSelector + "-params");
-        handlerFn(dataContainer);
+        handlerFn(clickTarget);
     };
 
     parentElement.addEventListener("click", newHandler);
@@ -88,10 +84,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!pipelineWrappers.length) return;
 
     pipelineWrappers.forEach(wrapper => {
-        Object.entries(onclickElements).forEach(function(entry) {
-            const selector = entry[0];
-            const handlerConfig = entry[1];
-            createClickHandler(wrapper, selector, handlerConfig.handler);
+        Object.entries(onclickElements).forEach(function([selector, { handler }]) {
+            createClickHandler(wrapper, selector, handler);
         });
     });
 });
