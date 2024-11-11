@@ -141,7 +141,7 @@
                                             <j:if test="${build.getStatus() == 'BUILDING'}">
                                                 buildPipeline.showProgress(${build.getId()}, ${build.getDependencyIds()});
                                             </j:if>
-                                                jQuery("table.pipelines").bind("show-status-${build.getId()}", function() {
+                                                jQuery("table.pipelines").on("show-status-${build.getId()}", function() {
                                                 <j:choose>
                                                     <j:when test="${build.isManualTrigger()}">
                                                         buildPipeline.updateBuildCard(${build.getId()});
