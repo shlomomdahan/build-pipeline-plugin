@@ -30,17 +30,19 @@ function initializeBuildCards() {
             buildPipeline.showProgress(buildId, dependencyIds);
         }
 
-        jQuery("table.pipelines").on(`show-status-${buildId}`, function() {
-            if (isManualTrigger) {
-                buildPipeline.updateBuildCard(buildId);
-            } else {
-                buildPipeline.updateNextBuildAndShowProgress(
-                    buildId,
-                    nextBuildNumber,
-                    dependencyIds
-                );
-            }
-        });
+        if (buildStatus === 'BUILDING') {
+            jQuery("table.pipelines").on(`show-status-${buildId}`, function () {
+                if (isManualTrigger) {
+                    buildPipeline.updateBuildCard(buildId);
+                } else {
+                    buildPipeline.updateNextBuildAndShowProgress(
+                        buildId,
+                        nextBuildNumber,
+                        dependencyIds
+                    );
+                }
+            });
+        }
     });
 }
 
