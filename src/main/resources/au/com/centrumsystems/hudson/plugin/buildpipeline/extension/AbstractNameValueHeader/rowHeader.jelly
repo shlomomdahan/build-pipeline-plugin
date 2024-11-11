@@ -8,7 +8,7 @@
 
     <div class="pipeline-info">
         <div class="revision rounded">
-            <div class="title" id="build-parameters-trigger-${buildGrid.get(0,0).getId()}">Pipeline ${buildGrid.get(0,0).getRevision()}</div>
+            <div class="title">Pipeline ${buildGrid.get(0,0).getRevision()}</div>
             <j:choose>
                 <j:when test="${buildGrid.get(0,0).getParameters().isEmpty()}">
                     <div class="description">No parameters</div>
@@ -22,7 +22,7 @@
                         </ul>
                     </div>
                     <script>
-                        jQuery('#build-parameters-trigger-${buildGrid.get(0,0).getId()}').tooltip({
+                        jQuery('#build-parameters-${buildGrid.get(0,0).getId()}').tooltip({
                             bodyHandler: function() {
                                 return jQuery('#build-parameters-${buildGrid.get(0,0).getId()}').html();
                             }
