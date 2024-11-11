@@ -16,26 +16,12 @@
     <st:adjunct includes="au.com.centrumsystems.hudson.plugin.buildpipeline.BuildPipelineView.bpp-trigger-pipeline"/>
     <script src="${rootURL}/plugin/build-pipeline-plugin/js/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="${rootURL}/plugin/build-pipeline-plugin/js/jquery-ui-1.8.14.custom.min.js"></script>
-<!--    <script type="text/javascript" src="${rootURL}/plugin/build-pipeline-plugin/js/handlebars-1.0.0.beta.6.js"></script>-->
     <script src="${rootURL}/plugin/build-pipeline-plugin/js/jquery.fancybox-1.3.4.js"></script>
     <script src="${rootURL}/plugin/build-pipeline-plugin/js/jquery.tooltip.min.js"></script>
     <script src="${rootURL}/plugin/build-pipeline-plugin/js/build-pipeline.js"></script>
-
-<!--<span id="build-card-template" type="text/x-handlebars-template" style="display: none">-->
-<!--    <st:include page="buildCardTemplate.jelly"-->
-<!--                from="${from.getBuildCard()}"-->
-<!--                it="${from}"/>-->
-<!--</span>-->
-
-<!--<span id="project-card-template" type="text/x-handlebars-template" style="display: none">-->
-<!--    <st:include page="projectCardTemplate.jelly"-->
-<!--                from="${from.getColumnHeaders()}"-->
-<!--                it="${from}" />-->
-<!--</span>-->
     <script src="${rootURL}/plugin/build-pipeline-plugin/js/templates-bundle.js"></script>
 
     <st:bind var="buildPipelineViewProxy" value="${from}" />
-<!--    <span class="pipeline-refresh-frequency" data-refresh-frequency="${from.getRefreshFrequencyInMillis()}" style="display: none"/>-->
 
     <span class="pipeline-view-settings"
           data-refresh-frequency="${from.getRefreshFrequencyInMillis()}"
