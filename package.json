@@ -4,8 +4,7 @@
     "mvnbuild": "npm run build",
     "mvntest": "npm run test",
     "build": "webpack --mode production",
-    "build:dev": "webpack --mode development --watch",
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "build:dev": "webpack --mode development --watch"
   },
   "devDependencies": {
     "handlebars": "^4.7.8",
