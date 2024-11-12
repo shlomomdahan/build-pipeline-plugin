@@ -1,6 +1,6 @@
 const buildCardTemplateSource = jQuery("#build-card-template").html();
 const projectCardTemplateSource = jQuery("#project-card-template").html();
-const refreshFrequency = parseInt(document.querySelector(".pipeline-refresh-frequency").dataset.refreshFrequency, 10);
+const refreshFrequency = parseInt(document.querySelector(".pipeline-refresh-frequency").dataset.refreshFrequency);
 
 var buildPipeline = new BuildPipeline(
     buildPipelineViewProxy,

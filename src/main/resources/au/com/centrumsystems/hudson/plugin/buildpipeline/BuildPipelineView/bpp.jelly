@@ -19,13 +19,13 @@
     <script src="${rootURL}/plugin/build-pipeline-plugin/js/jquery.tooltip.min.js"></script>
     <script src="${rootURL}/plugin/build-pipeline-plugin/js/build-pipeline.js"></script>
 
-<span id="build-card-template" type="text/x-handlebars-template" style="display: none">
+<span id="build-card-template" style="display: none">
     <st:include page="buildCardTemplate.jelly"
                 from="${from.getBuildCard()}"
                 it="${from}"/>
 </span>
 
-<span id="project-card-template" type="text/x-handlebars-template" style="display: none">
+<span id="project-card-template" style="display: none">
     <st:include page="projectCardTemplate.jelly"
                 from="${from.getColumnHeaders()}"
                 it="${from}" />
