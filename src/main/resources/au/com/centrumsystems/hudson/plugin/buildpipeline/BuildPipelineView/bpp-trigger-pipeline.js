@@ -7,7 +7,7 @@ Behaviour.specify(".bpp-trigger-pipeline-parameterized", 'BuildPipelineView.Trig
 });
 
 Behaviour.specify("#trigger-pipeline-button", 'BuildPipelineView.TriggerPipeline', 0, function(element) {
-    element.addEventListener('click', function(e) {
+    element.addEventListener('click', function() {
         document.getElementById('triggerPipelineForm').submit();
     });
 });
