@@ -4,8 +4,7 @@ function parseDataAttributes(container) {
         buildExtId: container.dataset.rerunBuildExtId,
         dependencyIds: container.dataset.rerunBuildDependencyIds
             .split(",")
-            .filter(Boolean)
-            .map(id => parseInt(id, 10))
+            .map(id => parseInt(id))
     };
 }
 
@@ -17,8 +16,7 @@ function parseTriggerAttributes(container) {
         projectName: container.dataset.projectName,
         dependencyIds: container.dataset.dependencyIds
             .split(",")
-            .filter(Boolean)
-            .map(id => parseInt(id, 10))
+            .map(id => parseInt(id))
     };
 }
 
@@ -30,12 +28,14 @@ function handleDialogClick(dataContainer) {
 
 function handleRerunClick(dataContainer) {
     const { id, buildExtId, dependencyIds } = parseDataAttributes(dataContainer);
+    console.log("dependencyIds", dependencyIds);
     buildPipeline.showSpinner(id);
     buildPipeline.rerunBuild(id, buildExtId, dependencyIds);
 }
 
 function handleTriggerBuild(dataContainer) {
     const { id, upstreamProjectName, upstreamBuildNumber, projectName, dependencyIds } = parseTriggerAttributes(dataContainer);
+    console.log("dependencyIds", dependencyIds);
     buildPipeline.showSpinner(id);
     buildPipeline.triggerBuild(id, upstreamProjectName, upstreamBuildNumber, projectName, dependencyIds);
 }
