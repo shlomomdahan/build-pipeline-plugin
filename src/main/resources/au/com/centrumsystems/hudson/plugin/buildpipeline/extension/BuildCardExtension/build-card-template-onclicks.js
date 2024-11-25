@@ -28,14 +28,12 @@ function handleDialogClick(dataContainer) {
 
 function handleRerunClick(dataContainer) {
     const { id, buildExtId, dependencyIds } = parseDataAttributes(dataContainer);
-    console.log("dependencyIds", dependencyIds);
     buildPipeline.showSpinner(id);
     buildPipeline.rerunBuild(id, buildExtId, dependencyIds);
 }
 
 function handleTriggerBuild(dataContainer) {
     const { id, upstreamProjectName, upstreamBuildNumber, projectName, dependencyIds } = parseTriggerAttributes(dataContainer);
-    console.log("dependencyIds", dependencyIds);
     buildPipeline.showSpinner(id);
     buildPipeline.triggerBuild(id, upstreamProjectName, upstreamBuildNumber, projectName, dependencyIds);
 }
@@ -52,30 +50,14 @@ function createClickHandler(parentElement, targetSelector, handlerFn) {
 }
 
 const onclickElements = {
-    ".bct-progress-bar-onclick": {
-        handler: handleDialogClick
-    },
-    ".bct-console-icon-onclick": {
-        handler: handleDialogClick
-    },
-    ".bct-rerun-successful-build-onclick": {
-        handler: handleRerunClick
-    },
-    ".bct-rerun-failed-latest-build-onclick": {
-        handler: handleRerunClick
-    },
-    ".bct-rerun-failed-manual-build-onclick": {
-        handler: handleTriggerBuild
-    },
-    ".bct-rerun-failed-build-onclick": {
-        handler: handleRerunClick
-    },
-    ".bct-trigger-manual-build-latest-onclick": {
-        handler: handleTriggerBuild
-    },
-    ".bct-trigger-manual-build-onclick": {
-        handler: handleTriggerBuild
-    }
+    ".bct-progress-bar-onclick": handleDialogClick,
+    ".bct-console-icon-onclick": handleDialogClick,
+    ".bct-rerun-successful-build-onclick": handleRerunClick,
+    ".bct-rerun-failed-latest-build-onclick": handleRerunClick,
+    ".bct-rerun-failed-manual-build-onclick": handleTriggerBuild,
+    ".bct-rerun-failed-build-onclick": handleRerunClick,
+    ".bct-trigger-manual-build-latest-onclick": handleTriggerBuild,
+    ".bct-trigger-manual-build-onclick": handleTriggerBuild
 };
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -84,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!pipelineWrappers.length) return;
 
     pipelineWrappers.forEach(wrapper => {
-        Object.entries(onclickElements).forEach(function([selector, { handler }]) {
+        Object.entries(onclickElements).forEach(function([selector, handler]) {
             createClickHandler(wrapper, selector, handler);
         });
     });
