@@ -1,4 +1,4 @@
-window.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
     const projectDataHolders = document.querySelectorAll(".ch-project-data-holder");
 
     projectDataHolders.forEach(dataHolder => {
